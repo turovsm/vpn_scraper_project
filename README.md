@@ -18,7 +18,7 @@
 
 ## Installation
 
-### 1. Clone the repository:   ``` git clone https://github.com/<your_username>/vpn_scraper_project.git ``` 
+### 1. Clone the repository:   ``` git clone https://github.com/turovsm/vpn_scraper_project.git ```
 
 ### 2. Go into cloned directory: ```cd vpn_scraper_project```
 
