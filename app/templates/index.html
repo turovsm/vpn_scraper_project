@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<!-- Add any additional head content here -->
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <h2>Where to get OpenVPN</h2>
+    <p><b>For Android</b>, you can install it in <a href="https://play.google.com/store/apps/details?id=de.blinkt.openvpn&hl=en_GB">Google Play</a></p>
+    <p><b>For IOS</b>, you can install it in <a href="https://apps.apple.com/us/app/openvpn-connect-openvpn-app/id590379981">App Store</a>.</p>
+    <p><b>For Linux</b>, you can install it in via packet manager or use Network Manager.</p>
+    <p><b>For Windows</b>, you can install it on official <a href="https://openvpn.net/client/client-connect-vpn-for-windows/">Website</a>.</p>
+    <h1>VPN Server list</h1>
+    <table>
+        <thead>
+            <tr>
+                <th class="{% if sort_by == 'country_name' %}sort-{{ sort_order }}{% endif %}">
+                    <a class="table_head" href="?sort_by=country_name&sort_order={% if sort_by == 'country_name' and sort_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        Country
+                    </a>
+                </th>
+                <th class="{% if sort_by == 'uptime' %}sort-{{ sort_order }}{% endif %}">
+                    <a class="table_head" href="?sort_by=uptime&sort_order={% if sort_by == 'uptime' and sort_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        Uptime
+                    </a>
+                </th>
+                <th class="{% if sort_by == 'ping' %}sort-{{ sort_order }}{% endif %}">
+                    <a class="table_head" href="?sort_by=ping&sort_order={% if sort_by == 'ping' and sort_order == 'asc' %}desc{% else %}asc{% endif %}">
+                        Ping
+                    </a>
+                </th>
+                <th>OVPN Files</th>
+                <th>Source</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vpn in vpns %}
+            <tr>
+                <td>
+                    <img src="{{ vpn.country_flag_path }}" alt="{{ vpn.country_name }} flag" style="width: 30px; height: 20px">
+                    {{ vpn.country_name }}
+                </td>
+                <td>{{ vpn.uptime }} hours</td>
+                <td>{{ vpn.ping }} ms</td>
+                <td>
+                    {% for file_name, file_path in vpn.files %}
+                        <a href="{{ file_path }}">{{ file_name }}</a><br>
+                    {% endfor %}
+                </td>
+                <td>
+                    <a href="{{ vpn.source }}">Source website</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

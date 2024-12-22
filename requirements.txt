@@ -1,0 +1,9 @@
+Flask
+requests
+beautifulsoup4
+SQLAlchemy
+flask_sqlalchemy
+flask_migrate
+pycountry
+playwright
+Flask-Migrate
